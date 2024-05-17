@@ -90,16 +90,51 @@ class SinglyLinkedList:
         print(p.data)
 
     def reverse_recursive(self, p=0):
+        isFirst = False
         if p == 0:
             p = self.head
+            isFirst = True
         if p is None:
             return None
         q = self.reverse_recursive(p.next)
+        if isFirst:
+            p.next = None
         if q is not None:
             q.next = p
+        else:
+            self.head = p
         return p
 
     def reverse_non_recursive(self):
         p = self.head
         while p is not None:
             pass
+
+
+testS = SinglyLinkedList()
+testS.insert_in_front(2)
+testS.insert_in_front(1)
+testS.insert_in_back(3)
+
+print("print in forward: ")
+testS.print_forward()
+
+print("print in backward: ")
+testS.print_backward()
+
+print("search 4: ")
+print(testS.search(4))
+
+print("search 3: ")
+print(testS.search(3))
+
+print("print size: ")
+print(testS.size())
+
+print("print the reversed list in forward (recursive): ")
+testS.reverse_recursive()
+testS.print_forward()
+
+print("print the reversed list in forward (non recursive): ")
+testS.reverse_non_recursive()
+testS.print_forward()
